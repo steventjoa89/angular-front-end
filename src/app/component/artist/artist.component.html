@@ -1,0 +1,47 @@
+<h4>Artist List</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Album Name</th>
+      <th>Artist Name</th>
+      <th>Date Release</th>
+      <th>Sample Audio</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let artist of artists; let i = index">
+      <td>{{i+1}}.</td>
+      <td>
+        <img class="images" [src]="artist.imageURL" style="width: 80px; height: 80px;"/>
+        {{ artist.albumName}}
+      </td>
+      <td>{{artist.artistName}}</td>
+      <td>{{artist.releaseDate | date:'dd MMM yyyy'}}</td>
+      <td>
+        <button (click)="openModal('modal-dialog', artist.artistId)">Play Music</button>
+      </td>
+      <td>{{artist.price}} 円</td>
+      <td>
+        <a class="badge badge-warning" routerLink="/details/{{ artist.artistId }}">
+          Edit
+        </a>
+        |
+        <a [routerLink]="" class="badge badge-warning" (click)="deleteArtist(artist.artistId)">
+          Delete
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<jw-modal id="modal-dialog">
+  <h1><strong>Artist Name: </strong>{{playMusic.artistName}}</h1>
+  <h2><strong>Album Name: </strong><strong>{{playMusic.albumName}}</strong></h2>
+  <ang-music-player [audioList] = audioList></ang-music-player>
+  <button (click)="closeModal('modal-dialog');">Close</button>
+</jw-modal>

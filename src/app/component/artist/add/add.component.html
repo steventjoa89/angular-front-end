@@ -1,0 +1,91 @@
+<div style="width: 400px; margin: auto;">
+
+  <form class="submit-form" [formGroup]="artistForm" (ngSubmit)="saveArtist()">
+    
+    <div class="form-group">
+      <label for="artist-name">Artist Name</label>
+      <input type="text" class="form-control" id="artistName" [(ngModel)]="artist.artistName" formControlName="artistName" required />
+
+      <div *ngIf="artistForm.controls['artistName'].invalid && (artistForm.controls['artistName'].dirty || artistForm.controls['artistName'].touched)" class="alert">
+        <div *ngIf="artistForm.controls['artistName'].errors.required">
+          Please enter Artist Name.
+        </div>
+        <div *ngIf="artistForm.controls['artistName'].errors.minlength">
+          Artist Name minimum length is 3.
+        </div>
+        <div *ngIf="artistForm.controls['artistName'].errors.maxlength">
+          Artist Name maximum length is 200.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="album-name">Album Name</label>
+      <input type="text" class="form-control" id="albumName" [(ngModel)]="artist.albumName" formControlName="albumName" required />
+
+      <div *ngIf="artistForm.controls['albumName'].invalid && (artistForm.controls['albumName'].dirty || artistForm.controls['albumName'].touched)" class="alert">
+        <div *ngIf="artistForm.controls['albumName'].errors.required">
+          Please enter Album Name.
+        </div>
+        <div *ngIf="artistForm.controls['albumName'].errors.minlength">
+          Album Name minimum length is 3.
+        </div>
+        <div *ngIf="artistForm.controls['albumName'].errors.maxlength">
+          Album Name maximum length is 200.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="image-url">Image URL</label>
+      <input type="text" class="form-control" id="imageURL" [(ngModel)]="artist.imageURL" formControlName="imageURL" required />
+
+      <div *ngIf="artistForm.controls['imageURL'].invalid && (artistForm.controls['imageURL'].dirty || artistForm.controls['imageURL'].touched)" class="alert">
+        <div *ngIf="artistForm.controls['imageURL'].errors.maxlength">
+          Image URL maximum length is 200.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="release-date">Release Date <i>Format: yyyy-mm-dd</i></label>
+      <input type="text" class="form-control" id="releaseDate" [(ngModel)]="artist.releaseDate" formControlName="releaseDate" required />
+
+      <div *ngIf="artistForm.controls['releaseDate'].invalid && (artistForm.controls['releaseDate'].dirty || artistForm.controls['releaseDate'].touched)" class="alert">
+        <div *ngIf="artistForm.controls['releaseDate'].errors.required">
+          Please enter release date.
+        </div>
+        <div *ngIf="artistForm.controls['releaseDate'].errors.pattern">
+          Pattern format for date is YYYY-MM-DD.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="text" class="form-control" id="price" [(ngModel)]="artist.price" formControlName="price" required />
+
+      <div *ngIf="artistForm.controls['price'].invalid && (artistForm.controls['price'].dirty || artistForm.controls['price'].touched)" class="alert">
+        <div *ngIf="artistForm.controls['price'].errors.required">
+          Please enter price.
+        </div>
+        <div *ngIf="artistForm.controls['price'].errors.pattern">
+          Price must be number of decimal number.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="sample-url">Sample URL</label>
+      <input type="text" class="form-control" id="sampleURL" [(ngModel)]="artist.sampleURL" formControlName="sampleURL" required />
+
+      <div *ngIf="artistForm.controls['sampleURL'].invalid && (artistForm.controls['sampleURL'].dirty || artistForm.controls['sampleURL'].touched)" class="alert">
+        <div *ngIf="artistForm.controls['sampleURL'].errors.maxlength">
+          Sample URL maximum length is 200.
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
